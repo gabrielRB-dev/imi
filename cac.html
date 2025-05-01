@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Atendimento ao Câncer (CAC) - IMI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-image {
+            position: relative;
+            height: 50vh;
+            background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        
+        .hero-image::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 0;
+        }
+        
+        .hero-image > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .tab-button:not(.active):hover {
+            background-color: #e0f2fe;
+        }
+        
+        /* WhatsApp Float Button */
+        .pulse-effect {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(72, 209, 32, 0.3);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px 10px rgba(72, 209, 32, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(72, 209, 32, 0.3);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-24 h-auto ml-8">
+                    <img src="fotos/Design sem nome (8).png" alt="Logo IMI" class="w-full h-auto">
+                </div>
+            </div>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="index.html" class="nav-link text-gray-700 font-medium hover:text-blue-500 transition">Início</a></li>
+                    <li><a href="index.html#about" class="nav-link text-gray-700 font-medium hover:text-blue-500 transition">Sobre</a></li>
+                    <li><a href="index.html#services" class="nav-link text-gray-700 font-medium hover:text-blue-500 transition">Serviços</a></li>
+                    <li><a href="index.html#doctors" class="nav-link text-gray-700 font-medium hover:text-blue-500 transition">Profissionais</a></li>
+                    <li><a href="index.html#appointment" class="nav-link text-gray-700 font-medium hover:text-blue-500 transition">Agendamento</a></li>
+                    <li><a href="index.html#contact" class="nav-link text-gray-700 font-medium hover:text-blue-500 transition">Contato</a></li>
+                </ul>
+            </nav>
+            
+            <button class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white py-4 px-4 shadow-lg">
+            <ul class="space-y-3">
+                <li><a href="index.html" class="block py-2 text-gray-700 font-medium">Início</a></li>
+                <li><a href="index.html#about" class="block py-2 text-gray-700 font-medium">Sobre</a></li>
+                <li><a href="index.html#services" class="block py-2 text-gray-700 font-medium">Serviços</a></li>
+                <li><a href="index.html#doctors" class="block py-2 text-gray-700 font-medium">Profissionais</a></li>
+                <li><a href="index.html#appointment" class="block py-2 text-gray-700 font-medium">Agendamento</a></li>
+                <li><a href="index.html#contact" class="block py-2 text-gray-700 font-medium">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-20">
+        <div class="hero-image w-full flex items-center justify-center text-white">
+            <div class="container mx-auto px-4 py-16 text-center">
+                <h2 class="text-4xl font-bold mb-6">Centro de Atendimento ao Câncer</h2>
+                <p class="text-xl max-w-3xl mx-auto mb-8">
+                    Cuidado especializado e humanizado para pacientes oncológicos com equipe multidisciplinar e tecnologia de ponta.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAC Services Navigation -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <button class="tab-button active py-3 px-6 rounded-full font-medium" onclick="showTab('prevencao')">
+                    <i class="fas fa-shield-alt mr-2"></i> Prevenção
+                </button>
+                <button class="tab-button py-3 px-6 rounded-full font-medium" onclick="showTab('diagnosticos')">
+                    <i class="fas fa-search-plus mr-2"></i> Diagnósticos
+                </button>
+                <button class="tab-button py-3 px-6 rounded-full font-medium" onclick="showTab('tratamento')">
+                    <i class="fas fa-heartbeat mr-2"></i> Tratamento
+                </button>
+                <button class="tab-button py-3 px-6 rounded-full font-medium" onclick="showTab('infusoes')">
+                    <i class="fas fa-procedures mr-2"></i> Centro de Infusões
+                </button>
+                <button class="tab-button py-3 px-6 rounded-full font-medium" onclick="showTab('quimioterapia')">
+                    <i class="fas fa-prescription-bottle-alt mr-2"></i> Quimioterapia
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAC Content Sections -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- Prevenção Section -->
+            <div id="prevencao" class="tab-content active">
+                <div class="flex flex-col md:flex-row items-center mb-16">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Prevenção do Câncer" 
+                             class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Prevenção do Câncer</h2>
+                        <p class="text-gray-600 mb-6">
+                            No CAC, acreditamos que a prevenção é a melhor estratégia contra o câncer. Nossa equipe trabalha com programas educacionais e preventivos para reduzir os fatores de risco e promover hábitos saudáveis.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Orientações sobre fatores de risco</h4>
+                                    <p class="text-gray-600">
+                                        Tabagismo, alimentação inadequada, sedentarismo, exposição solar excessiva e outros fatores que aumentam o risco de câncer.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Programas de rastreamento</h4>
+                                    <p class="text-gray-600">
+                                        Exames periódicos para detecção precoce de câncer de mama, colo do útero, próstata, cólon e outros tipos.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-check text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Vacinação</h4>
+                                    <p class="text-gray-600">
+                                        Vacinas contra HPV e hepatite B, que podem prevenir cânceres relacionados a essas infecções.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnósticos Section -->
+            <div id="diagnosticos" class="tab-content hidden">
+                <div class="flex flex-col md:flex-row items-center mb-16">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                        <img src="fotos/diagnostico-cancer-tratamento.jpg" 
+                             alt="Diagnósticos Oncológicos" 
+                             class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Diagnósticos Oncológicos</h2>
+                        <p class="text-gray-600 mb-6">
+                            Contamos com tecnologia de ponta e equipe especializada para realizar diagnósticos precisos e ágeis, fundamentais para o tratamento adequado do câncer.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-microscope text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Biópsias</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Coleta e análise de amostras de tecido para identificação de células cancerosas.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-dna text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Exames Moleculares</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Análise genética para identificar mutações específicas e orientar tratamentos personalizados.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-x-ray text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Imagens</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Tomografia, ressonância magnética, PET-CT e outros exames de imagem avançados.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-vial text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Marcadores Tumorais</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Exames de sangue que ajudam no diagnóstico e acompanhamento da doença.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tratamento Oncológico Section -->
+            <div id="tratamento" class="tab-content hidden">
+                <div class="flex flex-col md:flex-row items-center mb-16">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                        <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80" 
+                             alt="Tratamento Oncológico" 
+                             class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Tratamento Oncológico</h2>
+                        <p class="text-gray-600 mb-6">
+                            Oferecemos um tratamento completo e personalizado, utilizando as mais modernas técnicas e protocolos internacionais, sempre com foco no bem-estar do paciente.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-user-md text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Equipe Multidisciplinar</h4>
+                                    <p class="text-gray-600">
+                                        Oncologistas, cirurgiões, radioterapeutas, enfermeiros, nutricionistas, psicólogos e outros especialistas trabalhando juntos no seu tratamento.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clipboard-check text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Plano de Tratamento Personalizado</h4>
+                                    <p class="text-gray-600">
+                                        Desenvolvido após avaliação completa do caso, considerando tipo de câncer, estágio, condições clínicas e necessidades individuais.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-procedures text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Cirurgia Oncológica</h4>
+                                    <p class="text-gray-600">
+                                        Procedimentos cirúrgicos realizados por especialistas em câncer, com técnicas minimamente invasivas quando possível.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-radiation text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Radioterapia</h4>
+                                    <p class="text-gray-600">
+                                        Tratamento com radiação de alta precisão para destruir células cancerosas e reduzir tumores.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Centro de Infusões Section -->
+            <div id="infusoes" class="tab-content hidden">
+                <div class="flex flex-col md:flex-row items-center mb-16">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Centro de Infusões" 
+                             class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Centro de Infusões</h2>
+                        <p class="text-gray-600 mb-6">
+                            Ambiente acolhedor e confortável para administração de medicamentos intravenosos, com toda a segurança e monitoramento necessário.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-syringe text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Infusões Terapêuticas</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Administração de medicamentos para tratamento de diversas condições, incluindo câncer e doenças autoimunes.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-heartbeat text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Monitoramento Contínuo</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Equipe especializada acompanhando todo o processo para garantir segurança e conforto.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-couch text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Conforto e Privacidade</h4>
+                                <p class="text-gray-600 text-sm">
+                                    Poltronas reclináveis, ambiente climatizado e espaços individuais para maior privacidade.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md service-card">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                                    <i class="fas fa-tv text-blue-500"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-2">Ambiente Acolhedor</h4>
+                                <p class="text-gray-600 text-sm">
+                                    TV, Wi-Fi, lanches e outras comodidades para tornar o tratamento mais agradável.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quimioterapia Section -->
+            <div id="quimioterapia" class="tab-content hidden">
+                <div class="flex flex-col md:flex-row items-center mb-16">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                        <img src="fotos/Quimioterapia.webp" 
+                             alt="Quimioterapia" 
+                             class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Quimioterapia</h2>
+                        <p class="text-gray-600 mb-6">
+                            Realizamos tratamentos quimioterápicos com protocolos atualizados, segurança e suporte integral ao paciente.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-prescription-bottle-alt text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Protocolos Personalizados</h4>
+                                    <p class="text-gray-600">
+                                        Seleção dos medicamentos mais adequados para cada tipo de câncer, considerando características individuais do paciente.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-shield-alt text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Segurança</h4>
+                                    <p class="text-gray-600">
+                                        Equipamentos e procedimentos que garantem a administração precisa dos medicamentos, minimizando riscos.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-hand-holding-heart text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Suporte Integral</h4>
+                                    <p class="text-gray-600">
+                                        Acompanhamento nutricional, psicológico e de enfermagem especializada para lidar com efeitos colaterais.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-pills text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Medicação de Suporte</h4>
+                                    <p class="text-gray-600">
+                                        Prescrição de medicamentos para controle de náuseas, dor e outros sintomas relacionados ao tratamento.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-blue-500 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Precisa de mais informações?</h2>
+            <p class="text-xl max-w-2xl mx-auto mb-8">
+                Nossa equipe está pronta para esclarecer todas as suas dúvidas sobre nossos serviços oncológicos.
+            </p>
+            <a href="index.html#appointment" class="bg-white hover:bg-gray-100 text-blue-500 font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
+                Agende uma Consulta
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-24 h-auto ml-4">
+                            <img src="fotos/LOGOBRANCA.png" alt="Logo IMI" class="w-full h-auto">
+                        </div>
+                    </div>
+                    <p class="text-gray-400">
+                        Cuidando da sua saúde com excelência e abordagem integral desde 2010.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Início</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition">Sobre</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Serviços</a></li>
+                        <li><a href="index.html#doctors" class="text-gray-400 hover:text-white transition">Profissionais</a></li>
+                        <li><a href="index.html#appointment" class="text-gray-400 hover:text-white transition">Agendamento</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Serviços</h4>
+                    <ul class="space-y-2">
+                        <li><a href="cac.html" class="text-gray-400 hover:text-white transition">Centro de Atendimento ao Câncer</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Exames Laboratoriais</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Exames de Imagens</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Consultas Especializadas</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Central de Feridas</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Check-up Preventivo</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
+                    <p class="text-gray-400 mb-4">
+                        Siga-nos nas redes sociais!
+                    </p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.instagram.com/imi_picos/" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:opacity-90 transition shadow-lg">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/clinicaimipicos/" target="_blank" class="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition shadow-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Instituto de Medicina Integral. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5589981370080?text=Olá,%20venho%20através%20do%20site%20e%20gostaria%20de%20informações%20sobre%20o%20Centro%20de%20Atendimento%20ao%20Câncer."
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition z-50 pulse-effect">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('button').addEventListener('click', function() {
+            const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Find the button that was clicked (based on onclick attribute)
+            const buttons = document.querySelectorAll('.tab-button');
+            for (let i = 0; i < buttons.length; i++) {
+                if (buttons[i].getAttribute('onclick').includes(tabId)) {
+                    buttons[i].classList.add('active');
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
