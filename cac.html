@@ -106,13 +106,13 @@
                 </ul>
             </nav>
             
-            <button class="md:hidden text-gray-700 focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
         
         <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-white py-4 px-4 shadow-lg">
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-4 px-4 shadow-lg">
             <ul class="space-y-3">
                 <li><a href="index.html" class="block py-2 text-gray-700 font-medium">Início</a></li>
                 <li><a href="index.html#about" class="block py-2 text-gray-700 font-medium">Sobre</a></li>
@@ -166,9 +166,9 @@
             <div id="prevencao" class="tab-content active">
                 <div class="flex flex-col md:flex-row items-center mb-16">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                             alt="Prevenção do Câncer" 
-                             class="rounded-lg shadow-xl w-full h-auto">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                              alt="Prevenção do Câncer"
+                              class="rounded-lg shadow-xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Prevenção do Câncer</h2>
@@ -218,9 +218,9 @@
             <div id="diagnosticos" class="tab-content hidden">
                 <div class="flex flex-col md:flex-row items-center mb-16">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-                        <img src="fotos/diagnostico-cancer-tratamento.jpg" 
-                             alt="Diagnósticos Oncológicos" 
-                             class="rounded-lg shadow-xl w-full h-auto">
+                        <img src="fotos/diagnostico-cancer-tratamento.jpg"
+                              alt="Diagnósticos Oncológicos"
+                              class="rounded-lg shadow-xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Diagnósticos Oncológicos</h2>
@@ -271,11 +271,11 @@
 
             <!-- Tratamento Oncológico Section -->
             <div id="tratamento" class="tab-content hidden">
-                <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="flex flexocol md:flex-row items-center mb-16">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-                        <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80" 
-                             alt="Tratamento Oncológico" 
-                             class="rounded-lg shadow-xl w-full h-auto">
+                        <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80"
+                              alt="Tratamento Oncológico"
+                              class="rounded-lg shadow-xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Tratamento Oncológico</h2>
@@ -336,9 +336,9 @@
             <div id="infusoes" class="tab-content hidden">
                 <div class="flex flex-col md:flex-row items-center mb-16">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                             alt="Centro de Infusões" 
-                             class="rounded-lg shadow-xl w-full h-auto">
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                              alt="Centro de Infusões"
+                              class="rounded-lg shadow-xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Centro de Infusões</h2>
@@ -391,9 +391,9 @@
             <div id="quimioterapia" class="tab-content hidden">
                 <div class="flex flex-col md:flex-row items-center mb-16">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
-                        <img src="fotos/Quimioterapia.webp" 
-                             alt="Quimioterapia" 
-                             class="rounded-lg shadow-xl w-full h-auto">
+                        <img src="fotos/Quimioterapia.webp"
+                              alt="Quimioterapia"
+                              class="rounded-lg shadow-xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Quimioterapia</h2>
@@ -408,7 +408,7 @@
                                 <div>
                                     <h4 class="font-bold text-gray-800 mb-1">Protocolos Personalizados</h4>
                                     <p class="text-gray-600">
-                                        Seleção dos medicamentos mais adequados para cada tipo de câncer, considerando características individuais do paciente.
+                                        Seleção dos medicamentos mais adequados para cada tipo de câncer, considerando características individuals do paciente.
                                     </p>
                                 </div>
                             </div>
@@ -441,7 +441,7 @@
                                 <div>
                                     <h4 class="font-bold text-gray-800 mb-1">Medicação de Suporte</h4>
                                     <p class="text-gray-600">
-                                        Prescrição de medicamentos para controle de náuseas, dor e outros sintomas relacionados ao tratamento.
+                                        Prescrição de medicamentos para controle de náuseas, dolor e outros sintomas relacionados ao tratamento.
                                     </p>
                                 </div>
                             </div>
@@ -479,7 +479,7 @@
                         Cuidando da sua saúde com excelência e abordagem integral desde 2010.
                     </p>
                 </div>
-                
+                                
                 <div>
                     <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
                     <ul class="space-y-2">
@@ -491,7 +491,7 @@
                         <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
                     </ul>
                 </div>
-                
+                                
                 <div>
                     <h4 class="text-lg font-bold mb-4">Serviços</h4>
                     <ul class="space-y-2">
@@ -503,7 +503,7 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Check-up Preventivo</a></li>
                     </ul>
                 </div>
-                
+                                
                 <div>
                     <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
                     <p class="text-gray-400 mb-4">
@@ -534,11 +534,21 @@
 
     <script>
         // Mobile menu toggle
-        document.querySelector('button').addEventListener('click', function() {
-            const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+            
+            // Alternar ícone entre hamburguer e X
+            const icon = this.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
         });
-        
+
         // Tab functionality
         function showTab(tabId) {
             // Hide all tab contents

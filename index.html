@@ -148,6 +148,13 @@
             background-color: #2563eb;
             transform: translateY(-2px);
         }
+        .mobile-menu {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 100%;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -172,13 +179,13 @@
                 </ul>
             </nav>
             
-            <button class="md:hidden text-gray-700 focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
         
         <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-white py-4 px-4 shadow-lg">
+        <div class="mobile-menu md:hidden hidden bg-white py-4 px-4 shadow-lg">
             <ul class="space-y-3">
                 <li><a href="#home" class="block py-2 text-gray-700 font-medium">Início</a></li>
                 <li><a href="#about" class="block py-2 text-gray-700 font-medium">Sobre</a></li>
@@ -843,16 +850,32 @@
          animation: pulse 2s infinite;
      }
  </style>
- 
- 
- 
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('button').addEventListener('click', function() {
-            const mobileMenu = document.querySelector('.md\\:hidden.hidden');
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Toggle do menu mobile corrigido
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+    
+    // Alternar entre ícone de hamburguer e X
+    const icon = this.querySelector('i');
+    if (mobileMenu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    }
+});
+
+// Fechar o menu quando um item for clicado
+document.querySelectorAll('.mobile-menu a').forEach(item => {
+    item.addEventListener('click', () => {
+        document.querySelector('.mobile-menu').classList.add('hidden');
+        document.querySelector('#mobile-menu-button i').classList.remove('fa-times');
+        document.querySelector('#mobile-menu-button i').classList.add('fa-bars');
+    });
+});
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
