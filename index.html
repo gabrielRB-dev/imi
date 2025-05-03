@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="favicon_logo_redondo.ico" type="image/x-icon">
-
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -16,45 +16,56 @@
             scroll-behavior: smooth;
         }
         
-        .hero-image {
-            position: relative;
-            height: 70vh;
-            background-image: url('fotos/IMG_5158.jpg');
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-        }
-
-        .hero-image::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5); /* sombra preta */
-            backdrop-filter: blur(2px); /* desfoque */
-            -webkit-backdrop-filter: blur(6px); /* suporte para Safari */
-            z-index: 0;
-        }
-
-        .hero-image > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            .hero-image {
-                height: 50vh;
-            }
+        /* Hero Section Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+        
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+        
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+        
+        /* Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #132a48 100%);
+        }
+        
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Doctor Card Hover */
         .doctor-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
+        /* Navigation */
         .nav-link:hover {
             color: #3b82f6;
         }
         
+        /* Form Styles */
         .appointment-form input, 
         .appointment-form textarea,
         .appointment-form select {
@@ -68,7 +79,7 @@
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
-
+        
         /* Carousel styles */
         .carousel {
             position: relative;
@@ -140,9 +151,9 @@
         .carousel-dot.active {
             background-color: #3b82f6;
         }
-
-                /* CAC Button */
-                .cac-button {
+        
+        /* CAC Button */
+        .cac-button {
             transition: all 0.3s ease;
         }
         
@@ -150,12 +161,48 @@
             background-color: #2563eb;
             transform: translateY(-2px);
         }
+        
+        /* Mobile Menu */
         .mobile-menu {
             position: absolute;
             width: 100%;
             left: 0;
             top: 100%;
             z-index: 1000;
+        }
+        
+        /* Touch Target Size */
+        .touch-target {
+            min-width: 48px;
+            min-height: 48px;
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 640px) {
+            .text-responsive {
+                font-size: 1.75rem;
+            }
+        }
+        
+        /* Loading Optimization */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lazy-loaded {
+            opacity: 1;
+        }
+        
+        /* WhatsApp Float Button */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-effect {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -164,11 +211,10 @@
     <header class="fixed w-full bg-white shadow-md z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <div class="w-24 h-auto ml-8">
+                <div class="w-24 h-auto">
                     <img src="fotos/Design sem nome (8).png" alt="Logo IMI" class="w-full h-auto">
-                </div>                                        
-            </div>            
-            
+                </div>
+            </div>
             
             <nav class="hidden md:block">
                 <ul class="flex space-x-8">
@@ -181,7 +227,7 @@
                 </ul>
             </nav>
             
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none touch-target">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
@@ -189,50 +235,89 @@
         <!-- Mobile menu -->
         <div class="mobile-menu md:hidden hidden bg-white py-4 px-4 shadow-lg">
             <ul class="space-y-3">
-                <li><a href="#home" class="block py-2 text-gray-700 font-medium">Início</a></li>
-                <li><a href="#about" class="block py-2 text-gray-700 font-medium">Sobre</a></li>
-                <li><a href="#services" class="block py-2 text-gray-700 font-medium">Serviços</a></li>
-                <li><a href="#doctors" class="block py-2 text-gray-700 font-medium">Profissionais</a></li>
-                <li><a href="#appointment" class="block py-2 text-gray-700 font-medium">Agendamento</a></li>
-                <li><a href="#contact" class="block py-2 text-gray-700 font-medium">Contato</a></li>
+                <li><a href="#home" class="block py-3 text-gray-700 font-medium touch-target">Início</a></li>
+                <li><a href="#about" class="block py-3 text-gray-700 font-medium touch-target">Sobre</a></li>
+                <li><a href="#services" class="block py-3 text-gray-700 font-medium touch-target">Serviços</a></li>
+                <li><a href="#doctors" class="block py-3 text-gray-700 font-medium touch-target">Profissionais</a></li>
+                <li><a href="#appointment" class="block py-3 text-gray-700 font-medium touch-target">Agendamento</a></li>
+                <li><a href="#contact" class="block py-3 text-gray-700 font-medium touch-target">Contato</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-20">
-        <div class="hero-image w-full flex items-center justify-center text-white">
-            <div class="container mx-auto px-4 py-16 text-center">
-                <h2 class="text-4xl font-bold mb-6">Instituto de Medicina Integral</h2>
-                <p class="text-xl max-w-3xl mx-auto mb-8">
-                    No IMI, oferecemos uma abordagem holística para sua saúde, combinando as melhores práticas da medicina tradicional com terapias complementares, sempre com compromisso, humanização e atenção integral ao ser humano.
-                </p>
-                <a href="#appointment" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">
-                    Agende sua Consulta
-                </a>
+    <!-- New Hero Section -->
+    <section id="home" class="pt-20 gradient-bg">
+        <div class="container mx-auto px-4 py-16 md:py-24 text-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-responsive">Instituto de Medicina Integral</h1>
+                    <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 delay-100">
+                        Excelência em cuidar de saúde
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10 delay-200">
+                    <a href="#appointment" class="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 rounded-full transition duration-300 inline-block pulse">
+                        <i class="fas fa-calendar-check mr-2"></i> Agende sua Consulta
+                    </a>
+                    <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-4 px-8 rounded-full transition duration-300 inline-block">
+                        <i class="fas fa-stethoscope mr-2"></i> Nossos Serviços
+                    </a>
+                </div>
+                
+                <div class="mt-16 delay-300">
+                    <div class="flex justify-center space-x-8">
+                        <div class="text-center">
+                            <div class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-user-md text-2xl"></i>
+                            </div>
+                            <p>Especialistas Qualificados</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-heartbeat text-2xl"></i>
+                            </div>
+                            <p>Atendimento Humanizado</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-clinic-medical text-2xl"></i>
+                            </div>
+                            <p>Estrutura Completa</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        
+        <!-- Wave Divider -->
+        <div class="wave-divider">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full">
+                <path fill="#ffffff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
         </div>
     </section>
     
-
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <img src="fotos/IMG_5951.CR2.jpg"
+                    <img src="fotos/IMG_5951.CR2.jpg" 
                          alt="Clínica" 
-                         class="rounded-lg shadow-xl w-full h-auto transition-transform duration-300 hover:scale-105">
-                </div>                                                                     
+                         class="rounded-lg shadow-xl w-full h-auto transition-transform duration-300 hover:scale-105 lazy-load"
+                         loading="lazy">
+                </div>
+                
                 <div class="md:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-6">Sobre o Instituto</h2>
                     <p class="text-gray-600 mb-4">
-                        Fundado em 2010, o Instituto de Medicina Integral de Picos (IMI), localizado na cidade de Picos, no estado do Piauí, é uma instituição inovadora e referência em cuidados de saúde integrativos. Com uma abordagem humanizada, o IMI considera o paciente em sua totalidade — corpo, mente e espírito —, promovendo o bem-estar físico, emocional e social.
+                        Fundado em 2020, o Instituto de Medicina Integral de Picos (IMI), localizado na cidade de Picos, no estado do Piauí, é uma instituição inovadora e referência em cuidados de saúde integrativos. Com uma abordagem humanizada, o IMI considera o paciente em sua totalidade — corpo, mente e espírito —, promovendo o bem-estar físico, emocional e social.
                     </p>
                     <p class="text-gray-600 mb-6">
                         Nossa equipe multidisciplinar trabalha em conjunto para proporcionar diagnósticos precisos e tratamentos personalizados, sempre com foco na prevenção e na promoção da saúde. Fundado com o propósito de oferecer cuidados médicos de qualidade aliados à filosofia da medicina integral, o IMI se destaca por sua visão holística e compromisso com o cuidado integral do ser humano.
                     </p>
-                    <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <div class="flex items-center">
                             <div class="bg-blue-100 p-3 rounded-full mr-3">
                                 <i class="fas fa-check-circle text-blue-500"></i>
@@ -258,7 +343,7 @@
                             <span class="text-gray-700">Abordagem Integrativa</span>
                         </div>
                     </div>
-                    <a href="#services" class="text-blue-500 font-medium hover:text-blue-700 transition">
+                    <a href="#services" class="text-blue-500 font-medium hover:text-blue-700 transition inline-flex items-center">
                         Conheça nossos serviços <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
@@ -355,7 +440,7 @@
             </div>
             
             <div class="carousel relative">
-                <button class="carousel-control prev" onclick="prevSlide()">
+                <button class="carousel-control prev touch-target" onclick="prevSlide()">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 
@@ -364,8 +449,9 @@
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/1.jpg" 
-                                 alt="Dra. Raquel Rufino" 
-                                 class="w-full h-64 object-cover">
+                                  alt="Dra. Raquel Rufino" 
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dra. Raquel Rufino</h3>
                                 <p class="text-blue-500 font-medium mb-1">Angiologia e cirurgia vascular</p>
@@ -376,13 +462,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 2 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/2.jpg" 
-                                 alt="Dr. Carlos Winston" 
-                                 class="w-full h-64 object-cover">
+                                  alt="Dr. Carlos Winston" 
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Carlos Winston</h3>
                                 <p class="text-blue-500 font-medium mb-1">Psiquiatra</p>
@@ -393,13 +480,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 3 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/3.jpg" 
-                                 alt="Dra. Jéssica Coelho de Sá" 
-                                 class="w-full h-64 object-cover">
+                                  alt="Dra. Jéssica Coelho de Sá" 
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dra. Jéssica Coelho de Sá</h3>
                                 <p class="text-blue-500 font-medium mb-1">Ultrassom e medicina fetal</p>
@@ -410,13 +498,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 4 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/4.jpg"
                                  alt="Dr. Márcio Gregório" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Márcio Gregório</h3>
                                 <p class="text-blue-500 font-medium mb-1">Reumatologia</p>
@@ -427,13 +516,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 5 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/5.jpg"
                                  alt="Dra. Camila Hanna" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dra. Camila Hanna</h3>
                                 <p class="text-blue-500 font-medium mb-1">Tratamento de feridas</p>
@@ -444,13 +534,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 6 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/6.jpg"
                                  alt="Dr. Carlos Eduardo Sá" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Carlos Eduardo Sá</h3>
                                 <p class="text-blue-500 font-medium mb-1">Oncologista clínico</p>
@@ -461,13 +552,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 7 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/7.jpg"
                                  alt="Dr. Luciano Luz" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Luciano Luz</h3>
                                 <p class="text-blue-500 font-medium mb-1">Cirurgião de cabeça e pescoço</p>
@@ -478,13 +570,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 8 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/8.jpg"
                                  alt="Dr. Mário Vilany" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Mário Vilany</h3>
                                 <p class="text-blue-500 font-medium mb-1">Oncologista clínico</p>
@@ -495,13 +588,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 9 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/9.jpg"
                                  alt="Dr. Lázaro Macedo" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Lázaro Macedo</h3>
                                 <p class="text-blue-500 font-medium mb-1">Cirurgia disgestiva e bariática</p>
@@ -512,13 +606,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 10 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/10.jpg"
                                  alt="Dr. Rogério Eulálio" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Rogério Eulálio</h3>
                                 <p class="text-blue-500 font-medium mb-1">Ortopedista</p>
@@ -529,13 +624,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 11 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/11.jpg"
                                  alt="Dr. Paulo Victor Marques" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dr. Paulo Victor Marques</h3>
                                 <p class="text-blue-500 font-medium mb-1">Dermatologia</p>
@@ -546,13 +642,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 12 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/12.jpg"
                                  alt="Dra. Ana Rafaela" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dra. Ana Rafaela</h3>
                                 <p class="text-blue-500 font-medium mb-1">Nutrição Especializada</p>
@@ -563,13 +660,14 @@
                             </div>
                         </div>
                     </div>
-                    
+                                    
                     <!-- Doctor 13 -->
                     <div class="carousel-item">
                         <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
                             <img src="fotos/13.jpg"
                                  alt="Dra. Laíla Hipólito" 
-                                 class="w-full h-64 object-cover">
+                                  class="w-full h-64 object-cover lazy-load"
+                                  loading="lazy">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold text-gray-800 mb-1">Dra. Laíla Hipólito</h3>
                                 <p class="text-blue-500 font-medium mb-1">Psicólogo</p>
@@ -580,26 +678,9 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Doctor 14
-                    <div class="carousel-item">
-                        <div class="doctor-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
-                                 alt="Dra. Beatriz Almeida" 
-                                 class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-gray-800 mb-1">Dra. Beatriz Almeida</h3>
-                                <p class="text-blue-500 font-medium mb-1">Oftalmologista</p>
-                                <p class="text-gray-500 text-sm mb-3">CRM-SP 46802</p>
-                                <p class="text-gray-600 text-sm">
-                                    Especialista em doenças oculares e cirurgia refrativa.
-                                </p>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 
-                <button class="carousel-control next" onclick="nextSlide()">
+                <button class="carousel-control next touch-target" onclick="nextSlide()">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
@@ -641,7 +722,7 @@
                             <p>Sábado: 8h às 11:30h</p>
                         </div>
                     </div>
-                    
+                                    
                     <div class="md:w-1/2 p-10">
                         <form class="appointment-form" id="appointmentForm">
                             <div class="mb-6">
@@ -649,10 +730,14 @@
                                 <input type="text" id="name" class="w-full px-4 py-3 rounded-lg focus:outline-none border" required>
                             </div>
                             <div class="mb-6">
+                                <label class="block text-gray-700 mb-2" for="phone">Sobrenome *</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg focus:outline-none border" required>
+                            </div>
+                            <div class="mb-6">
                                 <label class="block text-gray-700 mb-2" for="message">Mensagem para o atendimento</label>
                                 <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg focus:outline-none border" placeholder="Ex: Gostaria de agendamento para Exames Laboratoriais"></textarea>
                             </div>
-                            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center">
+                            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center touch-target">
                                 <i class="fab fa-whatsapp mr-2 text-xl"></i> Solicitar Agendamento
                             </button>
                         </form>
@@ -676,7 +761,7 @@
                 <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
                     <div class="bg-gray-100 p-8 rounded-lg h-full">
                         <h3 class="text-xl font-bold text-gray-800 mb-6">Informações de Contato</h3>
-                        
+                                                
                         <div class="space-y-6">
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
@@ -690,7 +775,7 @@
                                     </p>
                                 </div>
                             </div>
-                            
+                                                    
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <i class="fas fa-phone-alt text-blue-500"></i>
@@ -703,7 +788,7 @@
                                     </p>
                                 </div>
                             </div>
-                            
+                                                    
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <i class="fas fa-envelope text-blue-500"></i>
@@ -715,7 +800,7 @@
                                     </p>
                                 </div>
                             </div>
-                            
+                                                    
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <i class="fas fa-clock text-blue-500"></i>
@@ -730,32 +815,34 @@
                                 </div>
                             </div>
                         </div>
-                        
+                                                
                         <div class="mt-8">
                             <h4 class="font-bold text-gray-800 mb-4">Redes Sociais</h4>
                             <div class="flex space-x-4">
-                                <a href="https://www.instagram.com/imi_picos/" target="_blank" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition">
+                                <a href="https://www.instagram.com/imi_picos/" target="_blank" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition touch-target">
                                     <i class="fab fa-instagram"></i>
-                                </a>                                
-                                <a href="https://www.facebook.com/clinicaimipicos/" target="_blank" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition">
+                                </a>
+                                                            
+                                <a href="https://www.facebook.com/clinicaimipicos/" target="_blank" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition touch-target">
                                     <i class="fab fa-facebook-f"></i>
-                                </a>                                
+                                </a>
+                                                        
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                                
                 <div class="md:w-1/2">
                     <div class="h-full rounded-lg overflow-hidden">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.3571712224143!2d-41.4694711!3d-7.084527800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x79c1132e2b01c41%3A0xc246d3d27ccd5144!2sInstituto%20de%20Medicina%20Integral!5e0!3m2!1spt-BR!2sbr!4v1746116523039!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.3571712224143!2d-41.4694711!3d-7.084527800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x79c1132e2b01c41%3A0xc246d3d27ccd5144!2sInstituto%20de%20Medicina%20Integral!5e0!3m2!1spt-BR!2sbr!4v1746116523039!5m2!1spt-BR!2sbr" 
                             width="100%" 
                             height="100%" 
                             style="min-height: 400px;"
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade"
-                            class="rounded-lg shadow-lg"
+                            class="rounded-lg shadow-lg lazy-load"
                         ></iframe>
                     </div>
                 </div>
@@ -769,15 +856,16 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <div class="w-24 h-auto ml-4">
+                        <div class="w-24 h-auto">
                             <img src="fotos/LOGOBRANCA.png" alt="Logo IMI" class="w-full h-auto">
-                        </div>                                        
+                        </div>
+                                                        
                     </div>
                     <p class="text-gray-400">
                         Cuidando da sua saúde com excelência e abordagem integral desde 2010.
                     </p>
                 </div>
-                
+                                
                 <div>
                     <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
                     <ul class="space-y-2">
@@ -789,7 +877,7 @@
                         <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
                     </ul>
                 </div>
-                
+                                
                 <div>
                     <h4 class="text-lg font-bold mb-4">Serviços</h4>
                     <ul class="space-y-2">
@@ -801,7 +889,7 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Check-up Preventivo</a></li>
                     </ul>
                 </div>
-                
+                                
                 <div>
                     <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
                     <p class="text-gray-400 mb-4">
@@ -809,12 +897,14 @@
                     </p>
                     </form>
                     <div class="mt-4 flex space-x-4">
-                        <a href="https://www.instagram.com/imi_picos/" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:opacity-90 transition shadow-lg">
+                        <a href="https://www.instagram.com/imi_picos/" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:opacity-90 transition shadow-lg touch-target">
                             <i class="fab fa-instagram"></i>
-                        </a>                        
-                        <a href="https://www.facebook.com/clinicaimipicos/" target="_blank" class="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition shadow-lg">
+                        </a>
+                                                
+                        <a href="https://www.facebook.com/clinicaimipicos/" target="_blank" class="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition shadow-lg touch-target">
                             <i class="fab fa-facebook-f"></i>
-                        </a>                        
+                        </a>
+                                            
                     </div>
                 </div>
             </div>
@@ -827,57 +917,35 @@
 
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/5589981370080?text=Olá,%20venho%20através%20do%20site%20e%20gostaria%20de%20um%20atendimento." 
-    class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition z-50 pulse-effect">
-     <i class="fab fa-whatsapp text-2xl"></i>
- </a>
- 
- <style>
-     /* Animação de pulsação do fundo verde com brilho transparente */
-     @keyframes pulse {
-         0% {
-             transform: scale(1);
-             box-shadow: 0 0 0 0 rgba(72, 209, 32, 0.3); /* Menos opaco */
-         }
-         50% {
-             transform: scale(1.1);
-             box-shadow: 0 0 15px 10px rgba(72, 209, 32, 0.4); /* Brilho mais transparente */
-         }
-         100% {
-             transform: scale(1);
-             box-shadow: 0 0 0 0 rgba(72, 209, 32, 0.3); /* Menos opaco */
-         }
-     }
- 
-     .pulse-effect {
-         animation: pulse 2s infinite;
-     }
- </style>
+    class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition z-50 float-effect touch-target">
+    <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
 
     <script>
         // Toggle do menu mobile corrigido
-document.getElementById('mobile-menu-button').addEventListener('click', function() {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-    
-    // Alternar entre ícone de hamburguer e X
-    const icon = this.querySelector('i');
-    if (mobileMenu.classList.contains('hidden')) {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-    } else {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-    }
-});
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            
+            // Alternar entre ícone de hamburguer e X
+            const icon = this.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
 
-// Fechar o menu quando um item for clicado
-document.querySelectorAll('.mobile-menu a').forEach(item => {
-    item.addEventListener('click', () => {
-        document.querySelector('.mobile-menu').classList.add('hidden');
-        document.querySelector('#mobile-menu-button i').classList.remove('fa-times');
-        document.querySelector('#mobile-menu-button i').classList.add('fa-bars');
-    });
-});
+        // Fechar o menu quando um item for clicado
+        document.querySelectorAll('.mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelector('.mobile-menu').classList.add('hidden');
+                document.querySelector('#mobile-menu-button i').classList.remove('fa-times');
+                document.querySelector('#mobile-menu-button i').classList.add('fa-bars');
+            });
+        });
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -896,22 +964,30 @@ document.querySelectorAll('.mobile-menu a').forEach(item => {
             });
         });
         
-                // Form submission for WhatsApp
-                document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        // Form submission for WhatsApp
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
             const messageInput = document.getElementById('message');
             
-            // Validate name field
+            // Validate fields
             if (!nameInput.value.trim()) {
                 alert('Por favor, informe seu nome.');
                 nameInput.focus();
                 return;
             }
             
+            if (!phoneInput.value.trim()) {
+                alert('Por favor, informe seu sobrenome.');
+                phoneInput.focus();
+                return;
+            }
+            
             // Encode message for URL
             const name = encodeURIComponent(nameInput.value.trim());
+            const phone = encodeURIComponent(phoneInput.value.trim());
             let message = messageInput.value.trim();
             
             // Replace new lines with %0A and spaces with %20
@@ -923,19 +999,19 @@ document.querySelectorAll('.mobile-menu a').forEach(item => {
             }
             
             // Create WhatsApp URL
-            const whatsappUrl = `https://wa.me/5589981370080?text=Olá,%20me%20chamo%20${name},%20${message}`;
+            const whatsappUrl = `https://wa.me/5589981370080?text=Olá,%20me%20chamo%20${name}%20${phone}.%20${message}`;
             
             // Open WhatsApp in new tab
             window.open(whatsappUrl, '_blank');
         });
-
+        
         // Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
         const totalSlides = slides.length;
         const carouselInner = document.getElementById('carousel-inner');
         const dotsContainer = document.getElementById('carousel-dots');
-
+        
         // Create dots
         for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement('div');
@@ -944,7 +1020,7 @@ document.querySelectorAll('.mobile-menu a').forEach(item => {
             dot.addEventListener('click', () => goToSlide(i));
             dotsContainer.appendChild(dot);
         }
-
+        
         function updateCarousel() {
             const itemWidth = 100 / getVisibleItems();
             carouselInner.style.transform = `translateX(-${currentSlide * itemWidth}%)`;
@@ -958,13 +1034,13 @@ document.querySelectorAll('.mobile-menu a').forEach(item => {
                 }
             });
         }
-
+        
         function getVisibleItems() {
             if (window.innerWidth >= 1024) return 4;
             if (window.innerWidth >= 768) return 2;
             return 1;
         }
-
+        
         function nextSlide() {
             const visibleItems = getVisibleItems();
             if (currentSlide < totalSlides - visibleItems) {
@@ -974,7 +1050,7 @@ document.querySelectorAll('.mobile-menu a').forEach(item => {
             }
             updateCarousel();
         }
-
+        
         function prevSlide() {
             const visibleItems = getVisibleItems();
             if (currentSlide > 0) {
@@ -984,20 +1060,44 @@ document.querySelectorAll('.mobile-menu a').forEach(item => {
             }
             updateCarousel();
         }
-
+        
         function goToSlide(index) {
             currentSlide = index;
             updateCarousel();
         }
-
+        
         // Handle window resize
         window.addEventListener('resize', updateCarousel);
-
+        
         // Initialize carousel
         updateCarousel();
-
+        
         // Auto slide every 5 seconds
         setInterval(nextSlide, 5000);
+        
+        // Lazy load images
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyLoadElements = document.querySelectorAll('.lazy-load');
+            
+            const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lazyElement = entry.target;
+                        
+                        if (lazyElement.tagName === 'IMG' || lazyElement.tagName === 'IFRAME') {
+                            lazyElement.src = lazyElement.dataset.src || lazyElement.src;
+                        }
+                        
+                        lazyElement.classList.add('lazy-loaded');
+                        observer.unobserve(lazyElement);
+                    }
+                });
+            });
+            
+            lazyLoadElements.forEach(element => {
+                lazyLoadObserver.observe(element);
+            });
+        });
     </script>
 </body>
 </html>
