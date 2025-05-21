@@ -6,30 +6,30 @@
     <title>Centro de Atendimento ao Câncer (CAC) - IMI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom Blue Colors */
+        /* Custom Colors - Nova Paleta */
         .text-custom-blue {
-            color: #157bb6 !important;
+            color: #e4007e !important; /* Rosa */
         }
         
         .bg-custom-blue {
-            background-color: #157bb6 !important;
+            background-color: #e4007e !important; /* Rosa */
         }
         
         .border-custom-blue {
-            border-color: #157bb6 !important;
+            border-color: #e4007e !important; /* Rosa */
         }
         
         .hover\:text-custom-blue:hover {
-            color: #157bb6 !important;
+            color: #e4007e !important; /* Rosa */
         }
         
         .hover\:bg-custom-blue:hover {
-            background-color: #1b4670 !important;
+            background-color: #c1006a !important; /* Rosa mais escuro para hover */
         }
         
-        /* Light blue background for icons */
+        /* Light background para ícones - usar verde-cinza claro */
         .bg-custom-blue-light {
-            background-color: #d0ecf9 !important;
+            background-color: #e8f0ea !important; /* Tom mais claro de #94a297 */
         }
 
         /* Wave shape adjustments */
@@ -54,7 +54,7 @@
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="fotos/logo cac.png" type="image/x-icon">
-    
+        
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -65,7 +65,7 @@
         
         /* Hero Section Animation */
         .hero-gradient {
-            background: linear-gradient(135deg, #157bb6 0%, #157bb6 30%, #132a48 100%);
+            background: linear-gradient(135deg, #e4007e 0%, #7a3d5f 30%, #e4007e 100%);
             background-size: 200% 200%;
             animation: gradient 10s ease infinite;
         }
@@ -96,7 +96,7 @@
         }
         
         .nav-link:hover {
-            color: #157bb6;
+            color: #e4007e;
         }
         
         .tab-button {
@@ -104,14 +104,14 @@
         }
         
         .tab-button.active {
-            background-color: #157bb6;
+            background-color: #e4007e;
             color: white;
         }
         
         .tab-button:not(.active):hover {
-            background-color: #e0f2fe;
+            background-color: #f5d6e8;
         }
-        
+                     
         /* WhatsApp Float Button */
         .pulse-effect {
             animation: pulse 2s infinite;
@@ -150,21 +150,26 @@
                 padding-top: 100px;
                 padding-bottom: 80px;
             }
+                    
+            #tratamento img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
             
             .tab-buttons {
                 flex-wrap: wrap;
                 gap: 8px;
             }
-            
+                    
             .tab-button {
                 padding: 8px 12px;
                 font-size: 14px;
             }
-            
+                    
             .service-card {
                 margin-bottom: 16px;
             }
-            
+                    
             .floating {
                 width: 200px;
                 margin-bottom: 30px;
@@ -174,69 +179,67 @@
 </head>
 <body class="bg-gray-50">
     <!-- Header/Navigation -->
-    <header class="fixed w-full bg-white shadow-md z-50">
+        <header class="fixed w-full bg-white z-50">  <!-- Removi TODAS as classes de shadow e border -->
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <div class="w-12 h-auto ml-8">
                     <img src="fotos/logo cac.png" alt="Logo CAC" class="w-full h-auto">
                 </div>
             </div>
-            
+                    
             <nav class="hidden md:block">
                 <ul class="flex space-x-8">
                     <li><a href="#home" class="nav-link text-gray-700 font-medium hover:text-custom-blue transition">Início</a></li>
                     <li><a href="#home2" class="nav-link text-gray-700 font-medium hover:text-custom-blue transition">Saúde Preventiva</a></li>
                     <li><a href="#info" class="nav-link text-gray-700 font-medium hover:text-custom-blue transition">Agendamento</a></li>
-                    <li><a href="index.html" class="nav-link text-custom-blue font-medium hover:text-gray-700 transition">IMI</a></li>
+                    <li><a href="index.html" class="nav-link font-medium hover:text-gray-700 transition" style="color: #157bb6;">IMI</a></li>
                 </ul>
             </nav>
-            
+                    
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white px-4 shadow-lg">
+            
+        <!-- Mobile menu - Também removi a borda aqui -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white px-4">
             <ul class="space-y-3 py-4">
                 <li><a href="#home" class="block py-2 text-gray-700 font-medium hover:text-custom-blue transition">Início</a></li>
                 <li><a href="#home2" class="block py-2 text-gray-700 font-medium hover:text-custom-blue transition">Saúde Preventiva</a></li>
                 <li><a href="#info" class="block py-2 text-gray-700 font-medium hover:text-custom-blue transition">Agendamento</a></li>
-                <li><a href="index.html" class="block py-2 text-custom-blue font-medium hover:text-gray-700 transition">IMI</a></li>
+                <li><a href="index.html" class="block py-2 font-medium hover:text-gray-700 transition" style="color: #157bb6;">IMI</a></li>
             </ul>
         </div>
     </header>
 
     <!-- New Hero Section -->
-    <section id="home" class="hero-gradient pt-20">
+    <section id="home" class="hero-gradient pt-24 overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between hero-content">
-                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                        Centro de Atendimento ao Câncer
-                    </h1>
-                    <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-lg">
-                        Cuidado especializado e humanizado com tecnologia de ponta e equipe multidisciplinar.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="index.html#appointment" class="bg-white hover:bg-gray-100 text-custom-blue font-bold py-3 px-6 rounded-full transition duration-300 inline-block text-center">
-                            <i class="fas fa-calendar-check mr-2"></i> Agendar Consulta
-                        </a>
-                        <a href="tel:+5589981370080" class="bg-transparent border-2 border-white hover:bg-white hover:text-custom-blue text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block text-center">
-                            <i class="fas fa-phone-alt mr-2"></i> Ligar Agora
-                        </a>
-                    </div>
+            <div class="flex flex-col items-center justify-center min-h-[40vh]">
+                <div class="flex justify-center mb-6">  <!-- Reduzi o mb-8 para mb-6 -->
+                    <img src="fotos/logo cac branca.png" alt="Logo CAC" class="floating w-64 h-auto">
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <img src="fotos/logo cac branca.png" alt="Câncer Awareness" class="floating w-64 h-auto">
+                            
+                <!-- Texto adicionado aqui -->
+                <p class="text-white text-xl text-center max-w-md mb-8 px-4">  <!-- Classes de estilo e espaçamento -->
+                    Cuidado especializado e humanizado com tecnologia de ponta e equipe multidisciplinar.
+                </p>
+                            
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="index.html#appointment" class="bg-white hover:bg-gray-100 text-custom-blue font-bold py-3 px-6 rounded-full transition duration-300 inline-block text-center">
+                        <i class="fas fa-calendar-check mr-2"></i> Agendar Consulta
+                    </a>
+                    <a href="tel:+5589981370080" class="bg-transparent border-2 border-white hover:bg-white hover:text-custom-blue text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block text-center">
+                        <i class="fas fa-phone-alt mr-2"></i> Ligar Agora
+                    </a>
                 </div>
             </div>
         </div>
-        
-        <!-- Wave shape divider -->
-        <div class="wave-shape">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#ffffff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            
+        <!-- Wave Divisor -->
+        <div class="wave-shape" style="margin-top: -0.5px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#ffffff" fill-opacity="1" d="M0,256L120,234.7C240,213,480,171,720,165.3C960,160,1200,192,1320,208L1440,224L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
             </svg>
         </div>
     </section>
@@ -376,16 +379,16 @@
 
             <!-- Tratamento Oncológico Section -->
             <div id="tratamento" class="tab-content hidden">
-                <div class="flex flexocol md:flex-row items-center mb-16">
+                <div class="flex flex-col md:flex-row items-center mb-16">
                     <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
                         <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80"
-                              alt="Tratamento Oncológico"
-                              class="rounded-lg shadow-xl w-full h-auto">
+                            alt="Tratamento Oncológico"
+                            class="rounded-lg shadow-xl w-full h-auto">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-3xl font-bold text-gray-800 mb-6">Tratamento Oncológico</h2>
                         <p class="text-gray-600 mb-6">
-                            Oferecemos um tratamento completo e personalizado, utilizando as mais modernas técnicas e protocolos internacionais, sempre com foco no bem-estar do paciente.
+                            Oferecemos um tratamento completo e personalizado, utilizando as mais modernas técnicas e protocolos internacional, sempre com foco no bem-estar do paciente.
                         </p>
                         <div class="space-y-6">
                             <div class="flex items-start">
@@ -579,7 +582,7 @@
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Perguntas Frequentes</h2>
-            
+                    
             <div class="max-w-3xl mx-auto space-y-4">
                 <div class="border border-gray-200 rounded-lg overflow-hidden">
                     <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition flex justify-between items-center">
@@ -590,17 +593,17 @@
                         Você pode agendar uma consulta através do nosso telefone (89) 98137-0080, pelo WhatsApp ou diretamente no nosso site, na seção de Agendamento. Nossa equipe está disponível de segunda a sexta, das 7h às 18h.
                     </div>
                 </div>
-                
+                            
                 <div class="border border-gray-200 rounded-lg overflow-hidden">
                     <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition flex justify-between items-center">
                         <span class="font-medium text-gray-800">Quais documentos devo levar para a primeira consulta?</span>
                         <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden p-4 text-gray-600">
-                        Para sua primeira consulta, recomendamos trazer: documento de identidade, CPF, cartão do convênio (se tiver), exames anteriores relacionados à sua condição e qualquer relatório médico relevante. Isso ajudará nosso time a entender melhor seu histórico.
+                        Para sua primeira consulta, recomendamos trazer: documento de identidade, CPF, cartão do convênio (se tiver), exames anteriores relacionados à sua condição e qualquer relatório médico relevante. Isso ajudará nosso team a entender melhor seu histórico.
                     </div>
                 </div>
-                
+                            
                 <div class="border border-gray-200 rounded-lg overflow-hidden">
                     <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition flex justify-between items-center">
                         <span class="font-medium text-gray-800">O CAC aceita convênios médicos?</span>
@@ -610,7 +613,7 @@
                         Sim, trabalhamos com os principais convênios médicos da região. Entre em contato conosco para verificar se seu plano de saúde está incluído. Também oferecemos opções de atendimento particular com condições especiais.
                     </div>
                 </div>
-                
+                            
                 <div class="border border-gray-200 rounded-lg overflow-hidden">
                     <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition flex justify-between items-center">
                         <span class="font-medium text-gray-800">Quais são os horários de funcionamento do Centro de Infusões?</span>
@@ -628,7 +631,7 @@
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Depoimentos de Pacientes</h2>
-            
+                    
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -650,7 +653,7 @@
                         "O atendimento no CAC foi excepcional desde a primeira consulta. A equipe é muito atenciosa e profissional. Me senti acolhida e segura durante todo o tratamento."
                     </p>
                 </div>
-                
+                            
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-custom-blue-light flex items-center justify-center mr-4">
@@ -671,7 +674,7 @@
                         "A estrutura do centro de infusões é muito confortável e moderna. Os profissionais são extremamente competentes e humanos. Recomendo a todos que precisam de tratamento oncológico."
                     </p>
                 </div>
-                
+                            
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-custom-blue-light flex items-center justify-center mr-4">
@@ -710,7 +713,7 @@
                         Cuidando da sua saúde com excelência e abordagem integral desde 2020.
                     </p>
                 </div>
-                                                
+                                                        
                 <div>
                     <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
                     <ul class="space-y-2">
@@ -720,7 +723,7 @@
                         <li><a href="index.html" class="text-gray-400 hover:text-white transition">IMI</a></li>
                     </ul>
                 </div>
-                                                
+                                                        
                 <div>
                     <h4 class="text-lg font-bold mb-4">Serviços</h4>
                     <ul class="space-y-2">
@@ -732,8 +735,9 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Check-up Preventivo</a></li>
                     </ul>
                 </div>
-                                                
-                <div>                                
+                                                        
+                <div>
+                                                    
                     <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
                     <div class="flex space-x-4">
                         <a href="https://www.instagram.com/imi_picos/" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:opacity-90 transition shadow-lg">
@@ -745,7 +749,7 @@
                     </div>
                 </div>
             </div>
-                                
+                                                    
             <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
                 <p>&copy; 2025 Instituto de Medicina Integral. Todos os direitos reservados.</p>
             </div>
@@ -763,7 +767,7 @@
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('open');
-            
+                    
             // Alternar ícone entre hamburguer e X
             const icon = this.querySelector('i');
             if (mobileMenu.classList.contains('open')) {
@@ -782,16 +786,16 @@
                 tab.classList.add('hidden');
                 tab.classList.remove('active');
             });
-            
+                    
             // Show selected tab content
             document.getElementById(tabId).classList.remove('hidden');
             document.getElementById(tabId).classList.add('active');
-            
+                    
             // Update tab buttons
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
-            
+                    
             // Find the button that was clicked (based on onclick attribute)
             const buttons = document.querySelectorAll('.tab-button');
             for (let i = 0; i < buttons.length; i++) {
@@ -801,16 +805,16 @@
                 }
             }
         }
-                
+                    
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const answer = question.nextElementSibling;
                 const icon = question.querySelector('i');
-                                
+                                                    
                 // Toggle answer visibility
                 answer.classList.toggle('hidden');
-                                
+                                                    
                 // Rotate icon
                 if (answer.classList.contains('hidden')) {
                     icon.classList.remove('rotate-180');
@@ -819,22 +823,22 @@
                 }
             });
         });
-                
+                    
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                                
+                                                    
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                                
+                                                    
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                                            
+                                                            
                     // Close mobile menu if open
                     const mobileMenu = document.getElementById('mobile-menu');
                     if (mobileMenu.classList.contains('open')) {
